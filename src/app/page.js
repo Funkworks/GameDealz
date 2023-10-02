@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import styles from './page.module.css'
-
+import { Alert } from '@mui/material';
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         Hello world lmao
+        <Alert severity="info">Testing! This is an alert!</Alert>
       </div>
 
       <div className={styles.center}>
