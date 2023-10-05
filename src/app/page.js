@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        Hello world lmao
+        <p id="helloworld">Hello world lmao</p>
         <Alert severity="info">Testing! This is an alert!</Alert>
       </div>
 
