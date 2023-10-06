@@ -12,4 +12,10 @@ describe("Default page", () => {
 
 		expect(header).toHaveTextContent(headerText);
 	});
+
+	it("Load Components", () => {
+		render(<Home />);
+
+		expect(screen.getByTestId("search-bar")).toBeInTheDocument();
+	});
 });
