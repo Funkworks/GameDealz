@@ -7,9 +7,15 @@ describe("Default page", () => {
 	it("Should render properly", () => {
 		render(<Home />);
 
-		const header = screen.getByText('Hello world lmao');
-		var headerText = 'Hello world lmao';
+		 const header = screen.getByText('Hello world lmao');
+		 var headerText = 'Hello world lmao';
 
 		expect(header).toHaveTextContent(headerText);
+	});
+
+	it("Load Components", () => {
+		render(<Home />);
+
+		expect(screen.getByTestId("search-bar")).toBeInTheDocument();
 	});
 });

@@ -36,10 +36,9 @@ export default function Home() {
       <div className={styles.description}>
         <p id="helloworld">Hello world lmao</p>
         GAMEDEALZ
-        <Alert severity="info">Testing! This is an alert!</Alert>
       </div>
 
-      <div>
+      <div data-testid="search-bar">
         <SearchBar onSearch={GameSearch} />
 
         {loading ? <p>Loading...</p> : <SearchResults results={results} />}
