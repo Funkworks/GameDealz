@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import profile from "./signin";
+
 import axios from "axios";
 
 export default function Home() {
@@ -29,14 +30,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       GAMEDEALZ
-      <div className={styles.description}>find the game, find the deal</div>
-      <div className={styles.signin}>
-        <a href="./signin" target="_blank" rel="noopener noreferrer">
-          <h2>
-            SIGN_IN <span>-&gt;</span>
-          </h2>
-        </a>
-      </div>
+      <div className={styles.description}></div>
       <div className={styles.grid}>
         <a
           href="./profile"
