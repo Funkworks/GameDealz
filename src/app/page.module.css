@@ -1,10 +1,13 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  font-size: xx-large;
+}
+
+.signin {
+  margin-left: 80%;
+  font-size: x-large;
+  color: blueviolet;
 }
 
 .description {
@@ -40,10 +43,41 @@
 }
 
 .grid {
+  padding: 5% 3% 13% 13%;
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
   max-width: 100%;
+  font-size: large;
+  color: #247f82;
   width: var(--max-width);
+}
+
+.search div {
+  position: center;
+  padding: 0% 20%;
+}
+.search form input {
+  margin-left: 10%;
+  position: center;
+  padding: 0% 15% 0% 3%;
+  height: 4rem;
+  font-size: larger;
+}
+.search form button {
+  position: center;
+  margin-left: 10%;
+  padding: 1% 5%;
+  font-size: larger;
+}
+.search form button text {
+  justify-items: auto;
+  font-size: larger;
+}
+
+.search div li {
+  font-size: xx-large;
+  padding: 2%;
+  width: 100%;
 }
 
 .card {
@@ -51,7 +85,6 @@
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
 }
 
 .card span {
@@ -97,7 +130,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -117,10 +150,23 @@
   .card:hover span {
     transform: translateX(4px);
   }
+
+  .signin:hover {
+    background: rgba(var(--signin-rgb), 0.1);
+    border: 1px solid rgba(var(--singin-border-rgb), 0.15);
+  }
+
+  .signin:hover {
+    transform: translateX(4px);
+  }
 }
 
 @media (prefers-reduced-motion) {
   .card:hover span {
+    transform: none;
+  }
+
+  .signin:hover {
     transform: none;
   }
 }
