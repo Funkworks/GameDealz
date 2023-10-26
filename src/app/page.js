@@ -1,16 +1,38 @@
 "use client";
 
 import styles from "./page.module.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
+import supabase from "@/lib/supabase"
 import profile from "./signin";
 import axios from "axios";
 
 export default function Home() {
+
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    UserLoggedIn();
+  }, [])
+
+  const UserLoggedIn = async () => {
+    try{
+      const { data: { user } } = await supabase.auth.getUser()
+      setUser(user)
+      console.log(user)
+    } catch (e) {
+
+    }
+  }
+
+  const SignOut = async () => {
+    const { error } = await supabase.auth.signOut()
+    window.location.reload();
+  }
 
   const GameSearch = async (query) => {
     setSearchQuery(query);
@@ -30,13 +52,23 @@ export default function Home() {
     <main className={styles.main}>
       GAMEDEALZ
       <div className={styles.description}>find the game, find the deal</div>
+      {user ? 
       <div className={styles.signin}>
-        <a href="./signin" target="_blank" rel="noopener noreferrer">
+        <span>Signed in to {user.email}</span>
+        <button onClick={() => SignOut()}>
+          <h2>
+            SIGN_OUT
+          </h2>
+        </button>
+      </div> : 
+      <div className={styles.signin}>
+        <a href="./signin" rel="noopener noreferrer">
           <h2>
             SIGN_IN <span>-&gt;</span>
           </h2>
         </a>
-      </div>
+      </div>}
+      
       <div className={styles.grid}>
         <a
           href="./profile"
