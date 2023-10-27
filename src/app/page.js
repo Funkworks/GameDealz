@@ -15,6 +15,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
 
+  // This useEffect() runs at the beginning of page render because of the [] at the end
   useEffect(() => {
     UserLoggedIn();
   }, [])
