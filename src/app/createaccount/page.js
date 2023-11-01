@@ -24,7 +24,14 @@ export default function Page(){
         })
 
         if(!error){
-            router.push("/")
+            const { data, error } = await supabase.from('users')
+            .update({ username: username })
+            .eq('email', email)
+            if(!error){
+                router.push("/")
+            } else{
+                console.log(error)
+            }
         }
     }
 
