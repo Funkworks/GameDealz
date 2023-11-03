@@ -24,9 +24,8 @@ export default function Home() {
     try{
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
-      console.log(user)
     } catch (e) {
-
+      console.log("User not signed in")
     }
   }
 
@@ -83,7 +82,7 @@ export default function Home() {
         </a>
 
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="./profile"
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
@@ -96,7 +95,7 @@ export default function Home() {
       <div className={styles.search}>
         <SearchBar onSearch={GameSearch} />
 
-        {loading ? <p>Loading...</p> : <SearchResults results={results} />}
+        {loading ? <p>Loading...</p> : <SearchResults results={results} user={user} />}
       </div>
     </main>
   );

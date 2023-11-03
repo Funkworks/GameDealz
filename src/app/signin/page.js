@@ -18,7 +18,7 @@ export default function Page(){
         })
         
         if(!error){
-            console.log(`Signed in with ${data}`)
+            console.log(`Sign-in successful`)
             router.push("/")
         }
     }
