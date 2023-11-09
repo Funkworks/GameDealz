@@ -8,6 +8,7 @@ import { useState } from "react";
 export default function Page(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [errorMsg, setErrorMsg] = useState("");
     const router = useRouter()
 
     const signin = async (e) => {
@@ -20,6 +21,9 @@ export default function Page(){
         if(!error){
             console.log(`Sign-in successful`)
             router.push("/")
+        } else {
+            setErrorMsg("Username or password incorrect/not found!")
+            setTimeout(() => {setErrorMsg("")}, 3000)
         }
     }
 
@@ -42,6 +46,7 @@ export default function Page(){
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        <p>{errorMsg}</p>
                         <button type="submit">Sign In</button>
                     </form>
                     <div><button><a href="../createaccount" rel="noopener noreferrer">Create an account</a></button></div>

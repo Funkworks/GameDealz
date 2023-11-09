@@ -10,6 +10,7 @@ export default function Page(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
     const router = useRouter()
 
     const createAccount = async (e) => {
@@ -33,6 +34,8 @@ export default function Page(){
                 console.log(error)
             }
         } else {
+            setErrorMsg("Email taken/password not strong enough, idk")
+            setTimeout(() => {setErrorMsg("")}, 3000)
             console.log(error)
         }
     }
@@ -74,6 +77,7 @@ export default function Page(){
                                 onChange={(e) => setConfirmPass(e.target.value)}
                             />
                         </div>
+                        <p>{errorMsg}</p>
                         <button type="submit">Create</button>
                     </form>
                 </div>
