@@ -81,7 +81,7 @@ export default function Home() {
           </h2>
         </a>
 
-        <a
+        { user ? <a
           href="./profile"
           className={styles.card}
           target="_blank"
@@ -90,7 +90,7 @@ export default function Home() {
           <h2>
             PROFILE <span>-&gt;</span>
           </h2>
-        </a>
+        </a> : <></>} 
       </div>
       <div className={styles.search}>
         <SearchBar onSearch={GameSearch} />

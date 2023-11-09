@@ -33,7 +33,7 @@ const SearchResults = ({ results, user }) => {
     const { data, error } = await supabase
       .from('followed_games_by_user')
       .insert({ user: user.id, game_id: game.gameID })
-}
+  }
 
   if (!results.length) {
     return <p>No results found</p>;

@@ -32,6 +32,8 @@ export default function Page(){
             } else{
                 console.log(error)
             }
+        } else {
+            console.log(error)
         }
     }
 
