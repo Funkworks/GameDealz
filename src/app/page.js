@@ -14,6 +14,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("")
 
   // This useEffect() runs at the beginning of page render because of the [] at the end
   useEffect(() => {
@@ -23,6 +24,11 @@ export default function Home() {
   const UserLoggedIn = async () => {
     try{
       const { data: { user } } = await supabase.auth.getUser()
+      const { data, error } = await supabase
+        .from('users')
+        .select(`username`)
+        .eq('email', user.email)
+      setUsername(data[0].username)
       setUser(user)
     } catch (e) {
       console.log("User not signed in")
@@ -54,7 +60,7 @@ export default function Home() {
       <div className={styles.description}>find the game, find the deal</div>
       {user ? 
       <div className={styles.signin}>
-        <span>Signed in to {user.email}</span>
+        <span>Signed in to {username}</span>
         <button onClick={() => SignOut()}>
           <h2>
             SIGN_OUT
@@ -84,7 +90,6 @@ export default function Home() {
         { user ? <a
           href="./profile"
           className={styles.card}
-          target="_blank"
           rel="noopener noreferrer"
         >
           <h2>

@@ -22,7 +22,7 @@ export default function Page(){
             console.log(`Sign-in successful`)
             router.push("/")
         } else {
-            setErrorMsg("Username or password incorrect/not found!")
+            setErrorMsg("Email or password incorrect/not found!")
             setTimeout(() => {setErrorMsg("")}, 3000)
         }
     }
