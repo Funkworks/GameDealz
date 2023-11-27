@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function StoreLogo({ storeID }){
 
     const [image, setImage] = useState(null)
+    const [store, setStore] = useState("")
 
     useEffect(() => {
         renderStores(storeID)
@@ -31,10 +32,11 @@ export default function StoreLogo({ storeID }){
               // console.log("Standardized Image:", standardizedImage);
     
               // const link = `https://www.cheapshark.com${standardizedImage}`
-              const logo = `/logos/${relevantStore.storeID}.png`
+              const logo = `/logos/${relevantStore.storeID - 1}.png`
               console.log(logo)
               // return link
               setImage(logo)
+              setStore(relevantStore.storeName)
             } else {
               console.log("Store not found for storeID:", storeID);
               return null;
@@ -44,7 +46,12 @@ export default function StoreLogo({ storeID }){
             console.error("Error loading stores", error);
           });
     };
+
     return (
-        <img src={image} />
+        <main>
+            Store: {store}
+            <img src={image} />
+        </main>
+        
     )
 }
