@@ -1,5 +1,6 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
+import { getAlert, setAlert, deleteAlert } from './../emails.js';
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
@@ -61,6 +62,7 @@ const SearchResults = ({ results, user }) => {
     addGameToUserDatabase(game)
       .then(() => {
         // Any additional logic after adding the game
+        setAlert(game.gameID, user.email)
       })
       .catch((error) => {
         // Handle the error
