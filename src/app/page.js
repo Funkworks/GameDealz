@@ -1,24 +1,13 @@
-import styles from "./page.module.css";
-import Image from "next/image";
+"use client";
+// pages/_app.js
+// pages/_app.js
+import React from "react";
+import Layout from "./layout"; // Update the path if necessary
+import "./globals.css";
 
-export default function Home() {
-  return (
-    <main>
-      <body>
-        <h1 className={styles.center}>
-          <Image
-            className={styles.center}
-            src="icon.svg"
-            width={500}
-            height={500}
-            alt="Picture of the author"
-          />
-        </h1>
-
-        <div className={styles.center}>
-          <a href="/init"> ENTER </a>
-        </div>
-      </body>
-    </main>
-  );
+function Home({ pageProps }) {
+  return <h1>WELCOME TO GAMEHUNT</h1>;<app {...pageProps} />;
+  
 }
+
+export default Home;

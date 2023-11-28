@@ -7,7 +7,6 @@ import SearchResults from "../components/SearchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";
-import header from "../ui/header/header";
 
 export default function init() {
   const [results, setResults] = useState([]);
@@ -52,7 +51,7 @@ export default function init() {
 
   return (
     <main className={styles.main}>
-      GAMEHUNT
+      <h1>GAMEHUNT</h1>
       <div className={styles.description}>hunt the game, find the deal</div>
       {user ? (
         <div className={styles.signin}>
@@ -64,9 +63,7 @@ export default function init() {
       ) : (
         <div className={styles.signin}>
           <a href="./signin" rel="noopener noreferrer">
-            <h2>
-              SIGN_IN <span>-&gt;</span>
-            </h2>
+            <h2></h2>
           </a>
         </div>
       )}
@@ -77,9 +74,7 @@ export default function init() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            SEARCH <span>-&gt;</span>
-          </h2>
+          <h2></h2>
         </a>
 
         {user ? (
