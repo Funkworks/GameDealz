@@ -49,7 +49,7 @@ export default function Page(){
 
     return(
         <main>
-            <div><a href='../'>Home</a></div>
+            <div><a href='../init'>Home</a></div>
             <div>
                 <h1>Followed Games: </h1>
                 <div className={styles.GameList}>

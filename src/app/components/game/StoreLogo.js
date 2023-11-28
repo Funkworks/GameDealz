@@ -25,16 +25,8 @@ export default function StoreLogo({ storeID }){
     
             // Check if the store was found
             if (relevantStore) {
-              // // Standardize the image URL for the store
-              // const standardizedImage = relevantStore.images.logo;
-    
-              // // Do whatever you need with standardizedImage
-              // console.log("Standardized Image:", standardizedImage);
-    
-              // const link = `https://www.cheapshark.com${standardizedImage}`
               const logo = `/logos/${relevantStore.storeID - 1}.png`
               console.log(logo)
-              // return link
               setImage(logo)
               setStore(relevantStore.storeName)
             } else {
