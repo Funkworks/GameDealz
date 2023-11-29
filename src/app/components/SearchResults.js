@@ -1,7 +1,7 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import styles from "./searchResults.module.css";
-import StoreLogo from "./game/storeLogo";
+import StoreLogo from "./game/StoreLogo";
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
