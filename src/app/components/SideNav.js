@@ -16,11 +16,11 @@ const SideNav = () => {
         <ul>
           <a href="./init" className={styles.link}>
             <li>
-              <div class="home-icon">
-                <div class="roof">
-                  <div class="roof-edge"></div>
+              <div className={"home-icon"}>
+                <div className={"roof"}>
+                  <div className={"roof-edge"}></div>
                 </div>
-                <div class="front"></div>
+                <div className={"front"}></div>
               </div>
             </li>
           </a>
@@ -28,10 +28,10 @@ const SideNav = () => {
             <h2></h2>
 
             <li>
-              <div class="about-icon">
-                <div class="head">
-                  <div class="eyes"></div>
-                  <div class="beard"></div>
+              <div className={"about-icon"}>
+                <div className={"head"}>
+                  <div className={"eyes"}></div>
+                  <div className={"beard"}></div>
                 </div>
               </div>
             </li>
@@ -43,18 +43,18 @@ const SideNav = () => {
             rel="noopener noreferrer"
           >
             <li>
-              <div class="work-icon">
-                <div class="paper"></div>
-                <div class="lines"></div>
-                <div class="lines"></div>
-                <div class="lines"></div>
+              <div className={"work-icon"}>
+                <div className={"paper"}></div>
+                <div className={"lines"}></div>
+                <div className={"lines"}></div>
+                <div className={"lines"}></div>
               </div>
             </li>
           </a>
           <li>
-            <div class="mail-icon">
-              <div class="mail-base">
-                <div class="mail-top"></div>
+            <div className={"mail-icon"}>
+              <div className={"mail-base"}>
+                <div className={"mail-top"}></div>
               </div>
             </div>
           </li>
