@@ -12,7 +12,6 @@ export default function StoreLogo({ storeID, dealID }){
 
     useEffect(() => {
       renderStores(storeID)
-      console.log(dealID)
     }, [])
 
     const renderStores = (storeID) => {

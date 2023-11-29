@@ -2,8 +2,8 @@
 
 import styles from "./page.module.css";
 import React, { useState, useEffect } from "react";
-import SearchBar from "../components/searchBar";
-import SearchResults from "../components/searchResults";
+import SearchBar from "../components/SearchBar";
+import SearchResults from "../components/SearchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";

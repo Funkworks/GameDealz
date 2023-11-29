@@ -3,8 +3,8 @@
 import styles from "./page.module.css";
 import { Alert } from "@mui/material";
 import React, { useState } from "react";
-import SearchBar from "./components/searchBar";
-import SearchResults from "./components/searchResults";
+import SearchBar from "./components/SearchBar";
+import SearchResults from "./components/SearchResults";
 
 import axios from "axios";
 

@@ -73,7 +73,6 @@ const SearchResults = ({ results, user }) => {
   const filteredResults = results.reduce((uniqueResults, game) => {
     // Check if the game name is not already in uniqueResults
     if (!uniqueResults.some((uniqueGame) => uniqueGame.title === game.title)) {
-      console.log([...uniqueResults, game])
       return [...uniqueResults, game];
     }
     return uniqueResults;
@@ -82,8 +81,6 @@ const SearchResults = ({ results, user }) => {
   if (!filteredResults.length) {
     return <p>No results found</p>;
   }
-
-  
 
   return (
     <div className={styles.main}>
