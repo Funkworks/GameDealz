@@ -76,6 +76,9 @@ export default function Page(){
         //delete alert
         console.log("gameID: " + gameData.data.info.steamAppID);
         console.log(deleteAlert(gameData.data.info.steamAppID, user.email));
+
+        //remove list item
+        document.getElementById(game).remove();
     }
     
 
@@ -86,7 +89,7 @@ export default function Page(){
                 <h1>Followed Games: </h1>
                 <div className={styles.GameList}>
                     {games ? games.map((game, index) =>
-                        <li key={index}> 
+                        <li id={game} key={index}> 
                             { game
                             /* {game.title}
                             <br></br>
