@@ -3,7 +3,7 @@
 import styles from "./page.module.css";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
-import SearchResults from "../components/SearchResults";
+import SearchResults from "../components/searchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";

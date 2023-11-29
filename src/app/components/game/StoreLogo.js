@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import styles from "./storeLogo.module.css";
 
 export default function StoreLogo({ storeID }){
 
@@ -40,10 +41,9 @@ export default function StoreLogo({ storeID }){
     };
 
     return (
-        <main>
-            Store: {store}
-            <img src={image} />
-        </main>
-        
+      <div className={styles.main}>
+          Store: {store}
+          <img src={image} />
+      </div>
     )
 }

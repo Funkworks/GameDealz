@@ -1,5 +1,6 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
+import styles from "./searchResults.module.css";
 import StoreLogo from "./game/StoreLogo";
 
 const SearchResults = ({ results, user }) => {
@@ -82,30 +83,31 @@ const SearchResults = ({ results, user }) => {
   }
 
   return (
-    <div>
-      <h2>GAME HUNT:</h2>
+    <div className={styles.main}>
+      <h2>Results</h2>
       <hr />
       <hr />
       <ul>
         {filteredResults.map((game, index) => (
           <li key={index}>
-            {game.title}
-            <br />
-            <img src={game.thumb} alt={game.title} />
-            <br />
-            Price ${game.salePrice}
-            <br />
-            Steam Rating {game.steamRatingPercent}%
-            <br />
-            Metacritic {game.metacriticScore}%
-            <br />
-            <StoreLogo storeID={game.storeID} />
-            {user ? (
-              <button onClick={() => handleAddGame(game)}>+</button>
-            ) : (
-              <></>
-            )}
-            <br />
+            <div className={styles.gameListing}>
+              <div className={styles.nameLogo}>
+                <p className={styles.gameTitle}>{game.title}</p>
+                <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
+              </div>
+              <p>
+                Price ${game.salePrice}<br/>
+                Steam Rating {game.steamRatingPercent}%<br/>
+                Metacritic {game.metacriticScore}%<br/>
+              </p>
+              <StoreLogo storeID={game.storeID} />
+              {user ? (
+                <button onClick={() => handleAddGame(game)}>+</button>
+              ) : (
+                <></>
+              )}
+              <br />
+            </div>
           </li>
         ))}
       </ul>

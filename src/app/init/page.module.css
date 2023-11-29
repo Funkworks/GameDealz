@@ -52,7 +52,7 @@
   width: var(--max-width);
 }
 
-.search div {
+.search {
   position: center;
   padding: 0% 20%;
 }
