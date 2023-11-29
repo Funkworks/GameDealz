@@ -1,12 +1,5 @@
-"use client";
-
 import styles from "./page.module.css";
-import React, { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar";
-import SearchResults from "./components/SearchResults";
-import supabase from "@/lib/supabase"
-import profile from "./signin";
-import axios from "axios";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -55,53 +48,22 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main}>
-      GAMEDEALZ
-      <div className={styles.description}>find the game, find the deal</div>
-      {user ? 
-      <div className={styles.signin}>
-        <span>Signed in to {username}</span>
-        <button onClick={() => SignOut()}>
-          <h2>
-            SIGN_OUT
-          </h2>
-        </button>
-      </div> : 
-      <div className={styles.signin}>
-        <a href="./signin" rel="noopener noreferrer">
-          <h2>
-            SIGN_IN <span>-&gt;</span>
-          </h2>
-        </a>
-      </div>}
-      
-      <div className={styles.grid}>
-        <a
-          href="./profile"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            SEARCH <span>-&gt;</span>
-          </h2>
-        </a>
+    <main>
+      <body>
+        <h1 className={styles.center}>
+          <Image
+            className={styles.center}
+            src="icon.svg"
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
+        </h1>
 
-        { user ? <a
-          href="./profile"
-          className={styles.card}
-          rel="noopener noreferrer"
-        >
-          <h2>
-            PROFILE <span>-&gt;</span>
-          </h2>
-        </a> : <></>} 
-      </div>
-      <div className={styles.search}>
-        <SearchBar onSearch={GameSearch} />
-
-        {loading ? <p>Loading...</p> : <SearchResults results={results} user={user} />}
-      </div>
+        <div className={styles.center}>
+          <a href="/init"> ENTER </a>
+        </div>
+      </body>
     </main>
   );
 }
