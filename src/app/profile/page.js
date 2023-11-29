@@ -51,23 +51,31 @@ export default function Page(){
 
     //remove a game from watchlist
     const handleRemoveGame = async (game) => {
-        //remove game from player's followed games in database
-
-
         //get game id from name (I know this is a dumb solution, but whatever it's fine)
         const { data, error } = await supabase
                 .from('games')
                 .select('id')
                 .eq('game_name', game)
         
+        //remove game from player's followed games in database
+        const { err } = await supabase
+            .from('followed_games_by_user')
+            .delete()
+            .eq('user', user.id)
+            .eq('gar', data[0].id)
         
+        console.log(JSON.stringify(err));
+        
+        console.log("user, user.id: " + user.id);
+        console.log("gar, data[0].id: "+ data[0].id);
+        
+        //get steamID from cheapshark
         const gameData = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${data[0].id}`);
         console.log(`https://www.cheapshark.com/api/1.0/games?id=${data[0].id}`);
 
         //delete alert
         console.log("gameID: " + gameData.data.info.steamAppID);
         console.log(deleteAlert(gameData.data.info.steamAppID, user.email));
-        getAlert(user.email);
     }
     
 
