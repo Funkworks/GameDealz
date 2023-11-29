@@ -1,6 +1,6 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
-import { getAlert, setAlert, deleteAlert } from './../emails.js';
+import { setAlert } from './../emails.js';
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);

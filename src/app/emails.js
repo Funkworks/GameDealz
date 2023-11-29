@@ -31,5 +31,6 @@ export async function getAlert(email)
 export async function deleteAlert(gameID, email)
 {
 	const deleteResponse = await axios.get(`https://www.cheapshark.com/api/1.0/alerts?action=delete&email=${email}&gameID=${gameID}&price=0.0`);
+	console.log(`https://www.cheapshark.com/api/1.0/alerts?action=delete&email=${email}&gameID=${gameID}&price=0.0`);
 	return deleteResponse;
 }

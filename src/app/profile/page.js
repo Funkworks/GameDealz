@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import supabase from "@/lib/supabase"
 import React, { useState, useEffect } from "react";
+import { deleteAlert, getAlert } from './../emails.js';
 
 export default function Page(){
 
@@ -45,6 +46,15 @@ export default function Page(){
 
         }
     }
+
+    //remove a game from watchlist
+    const handleRemoveGame = (game) => {
+        //remove game from player's followed games in database
+
+        //delete alert
+        console.log(deleteAlert(game, user.email));
+        getAlert(user.email);
+    }
     
 
     return(
@@ -67,6 +77,7 @@ export default function Page(){
                             {game.cheaperStores}
                             {user ? <button onClick={() => addGameToUserDatabase(game)}>+</button> : <></>} */}
                             <br></br>
+                            <button onClick={() => handleRemoveGame(game)}>X</button>
                         </li>
                     ) : <></>}
                 </div>
