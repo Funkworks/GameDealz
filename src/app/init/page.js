@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 import React, { useState, useEffect } from "react";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/searchBar";
 import SearchResults from "../components/searchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";

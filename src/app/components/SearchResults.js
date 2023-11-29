@@ -73,6 +73,7 @@ const SearchResults = ({ results, user }) => {
   const filteredResults = results.reduce((uniqueResults, game) => {
     // Check if the game name is not already in uniqueResults
     if (!uniqueResults.some((uniqueGame) => uniqueGame.title === game.title)) {
+      console.log([...uniqueResults, game])
       return [...uniqueResults, game];
     }
     return uniqueResults;
@@ -81,6 +82,8 @@ const SearchResults = ({ results, user }) => {
   if (!filteredResults.length) {
     return <p>No results found</p>;
   }
+
+  
 
   return (
     <div className={styles.main}>
@@ -100,7 +103,7 @@ const SearchResults = ({ results, user }) => {
                 Steam Rating {game.steamRatingPercent}%<br/>
                 Metacritic {game.metacriticScore}%<br/>
               </p>
-              <StoreLogo storeID={game.storeID} />
+              <StoreLogo storeID={game.storeID} dealID={game.dealID}/>
               {user ? (
                 <button onClick={() => handleAddGame(game)}>+</button>
               ) : (

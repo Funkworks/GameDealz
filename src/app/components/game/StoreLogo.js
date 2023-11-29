@@ -3,13 +3,16 @@
 import { useState, useEffect } from "react";
 import styles from "./storeLogo.module.css";
 
-export default function StoreLogo({ storeID }){
+const REDIRECT_URL = "https://www.cheapshark.com/redirect?dealID="
+
+export default function StoreLogo({ storeID, dealID }){
 
     const [image, setImage] = useState(null)
     const [store, setStore] = useState("")
 
     useEffect(() => {
-        renderStores(storeID)
+      renderStores(storeID)
+      console.log(dealID)
     }, [])
 
     const renderStores = (storeID) => {
@@ -22,12 +25,12 @@ export default function StoreLogo({ storeID }){
               (store) => store.storeID === storeID
             );
     
-            console.log("Store:", relevantStore);
+            //console.log("Store:", relevantStore);
     
             // Check if the store was found
             if (relevantStore) {
               const logo = `/logos/${relevantStore.storeID - 1}.png`
-              console.log(logo)
+              // console.log(logo)
               setImage(logo)
               setStore(relevantStore.storeName)
             } else {
@@ -43,7 +46,7 @@ export default function StoreLogo({ storeID }){
     return (
       <div className={styles.main}>
           Store: {store}
-          <img src={image} />
+          <a href={REDIRECT_URL + dealID + "&k=1"}><img src={image} /></a>
       </div>
     )
 }
