@@ -58,16 +58,16 @@ export default function Page(){
                 .eq('game_name', game)
         
         //remove game from player's followed games in database
-        const { err } = await supabase
+        const response = await supabase
             .from('followed_games_by_user')
             .delete()
             .eq('user', user.id)
-            .eq('gar', data[0].id)
+            .eq('game_id', data[0].id)
         
-        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(response));
         
         console.log("user, user.id: " + user.id);
-        console.log("gar, data[0].id: "+ data[0].id);
+        console.log("game_id, data[0].id: "+ data[0].id);
         
         //get steamID from cheapshark
         const gameData = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${data[0].id}`);
