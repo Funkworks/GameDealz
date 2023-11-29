@@ -1,6 +1,6 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
-import styles from "./searchResults.module.css";
+import styles from "./SearchResults.module.css";
 import StoreLogo from "./game/StoreLogo";
 
 const SearchResults = ({ results, user }) => {
@@ -84,7 +84,7 @@ const SearchResults = ({ results, user }) => {
 
   return (
     <div className={styles.main}>
-      <h2>Results</h2>
+      <h2>Search Results</h2>
       <hr />
       <hr />
       <ul>
@@ -100,9 +100,11 @@ const SearchResults = ({ results, user }) => {
                 Steam Rating {game.steamRatingPercent}%<br/>
                 Metacritic {game.metacriticScore}%<br/>
               </p>
-              <StoreLogo storeID={game.storeID} dealID={game.dealID}/>
+              <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
               {user ? (
-                <button onClick={() => handleAddGame(game)}>+</button>
+              <>
+                Follow Game <button className={styles.followButton} onClick={() => handleAddGame(game)}>+</button>
+              </>
               ) : (
                 <></>
               )}

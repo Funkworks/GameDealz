@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import styles from "./storeLogo.module.css";
+import styles from "./StoreLogo.module.css";
 
 const REDIRECT_URL = "https://www.cheapshark.com/redirect?dealID="
+const STEAM_URL = "https://store.steampowered.com/app/"
 
-export default function StoreLogo({ storeID, dealID }){
+export default function StoreLogo({ storeID, dealID, steamID }){
 
     const [image, setImage] = useState(null)
     const [store, setStore] = useState("")
@@ -31,7 +32,12 @@ export default function StoreLogo({ storeID, dealID }){
               const logo = `/logos/${relevantStore.storeID - 1}.png`
               // console.log(logo)
               setImage(logo)
-              setStore(relevantStore.storeName)
+              if(relevantStore.storeName === "Blizzard Shop"){
+                setStore("Battle.net")
+              } else {
+                setStore(relevantStore.storeName)
+              }
+              
             } else {
               console.log("Store not found for storeID:", storeID);
               return null;
@@ -44,8 +50,9 @@ export default function StoreLogo({ storeID, dealID }){
 
     return (
       <div className={styles.main}>
-          Store: {store}
-          <a href={REDIRECT_URL + dealID + "&k=1"}><img src={image} /></a>
+          Sale Store: {store}
+          <a href={REDIRECT_URL + dealID + "&k=1"} target="_blank"><img src={image} /></a>
+          {store != "Steam" && steamID && <>View on Steam: <a href={STEAM_URL + steamID} target="_blank"><img src="/logos/0.png" /></a></>}
       </div>
     )
 }
