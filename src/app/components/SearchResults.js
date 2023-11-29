@@ -1,6 +1,8 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import { setAlert } from './../emails.js';
+import styles from "./SearchResults.module.css";
+import StoreLogo from "./game/StoreLogo";
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
@@ -70,42 +72,6 @@ const SearchResults = ({ results, user }) => {
       });
   };
 
-  const renderStores = (storeID) => {
-    // Fetch store information from the API using promises
-    fetch(`https://www.cheapshark.com/img/stores/logos/0.png`)
-      .then((response) => response.json())
-      .then((storesData) => {
-        // Find the store based on the provided storeID
-        const relevantStore = storesData.find(
-          (store) => store.storeID === storeID
-        );
-
-        console.log("Store:", relevantStore);
-
-        // Check if the store was found
-        if (relevantStore) {
-          // Standardize the image URL for the store
-          const standardizedImage = relevantStore.images.logo;
-
-          // Do whatever you need with standardizedImage
-          console.log("Standardized Image:", standardizedImage);
-
-          return (
-            <img
-              src={`https://www.cheapshark.com/img/stores/logos/0.png`}
-              alt={game.title}
-            />
-          );
-        } else {
-          console.log("Store not found for storeID:", storeID);
-          return null;
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading stores", error);
-      });
-  };
-
   const filteredResults = results.reduce((uniqueResults, game) => {
     // Check if the game name is not already in uniqueResults
     if (!uniqueResults.some((uniqueGame) => uniqueGame.title === game.title)) {
@@ -119,30 +85,33 @@ const SearchResults = ({ results, user }) => {
   }
 
   return (
-    <div>
-      <h2>GAME HUNT:</h2>
+    <div className={styles.main}>
+      <h2>Search Results</h2>
       <hr />
       <hr />
       <ul>
         {filteredResults.map((game, index) => (
           <li key={index}>
-            {game.title}
-            <br />
-            <img src={game.thumb} alt={game.title} />
-            <br />
-            Price ${game.salePrice}
-            <br />
-            Steam Rating {game.steamRatingPercent}%
-            <br />
-            Metacritic {game.metacriticScore}%
-            <br />
-            {renderStores(game.storeID)}{" "}
-            {user ? (
-              <button onClick={() => handleAddGame(game)}>+</button>
-            ) : (
-              <></>
-            )}
-            <br />
+            <div className={styles.gameListing}>
+              <div className={styles.nameLogo}>
+                <p className={styles.gameTitle}>{game.title}</p>
+                <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
+              </div>
+              <p>
+                Price ${game.salePrice}<br/>
+                Steam Rating {game.steamRatingPercent}%<br/>
+                Metacritic {game.metacriticScore}%<br/>
+              </p>
+              <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
+              {user ? (
+              <>
+                Follow Game <button className={styles.followButton} onClick={() => handleAddGame(game)}>+</button>
+              </>
+              ) : (
+                <></>
+              )}
+              <br />
+            </div>
           </li>
         ))}
       </ul>

@@ -1,39 +1,42 @@
-'use client'
+"use client";
 
 import styles from "./page.module.css";
-import supabase from "@/lib/supabase"
+import supabase from "@/lib/supabase";
 import React, { useState, useEffect } from "react";
+import SideNav from "../components/SideNav";
 import { deleteAlert, getAlert } from './../emails.js';
 import axios from "axios";
 
-export default function Page(){
+export default function Page() {
+  const [user, setUser] = useState(null);
+  const [games, setGames] = useState(null);
 
-    const [user, setUser] = useState(null);
-    const [games, setGames] = useState(null);
+  useEffect(() => {
+    checkIfSignedIn();
+  }, []);
 
-    useEffect(() => {
-        checkIfSignedIn()
-    }, [])
+  //If user state was updated, fetch their followed games from the database
+  useEffect(() => {
+    fetchFollowedGames();
+  }, [user]);
 
-    //If user state was updated, fetch their followed games from the database
-    useEffect(() => {
-        fetchFollowedGames()
-    }, [user])
-
-    const checkIfSignedIn = async () => {
-        try{
-            const { data: { user } } = await supabase.auth.getUser()
-            setUser(user)
-        } catch (e) {
-            console.log("User not signed in")
-        }
+  const checkIfSignedIn = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    } catch (e) {
+      console.log("User not signed in");
     }
+  };
 
-    const fetchFollowedGames = async () => {
-        try{
-            const { data, error } = await supabase
-                .from('followed_games_by_user')
-                .select(`
+  const fetchFollowedGames = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("followed_games_by_user")
+        .select(
+          `
                     games (
                         id,
                         game_name

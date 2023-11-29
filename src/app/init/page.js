@@ -7,13 +7,13 @@ import SearchResults from "../components/SearchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";
-import header from "../ui/header/header";
 
 export default function init() {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("")
 
   // This useEffect() runs at the beginning of page render because of the [] at the end
   useEffect(() => {
@@ -21,15 +21,18 @@ export default function init() {
   }, []);
 
   const UserLoggedIn = async () => {
-    try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
+    try{
+      const { data: { user } } = await supabase.auth.getUser()
+      const { data, error } = await supabase
+        .from('users')
+        .select(`username`)
+        .eq('email', user.email)
+      setUsername(data[0].username)
+      setUser(user)
     } catch (e) {
-      console.log("User not signed in");
+      console.log("User not signed in")
     }
-  };
+  }
 
   const SignOut = async () => {
     const { error } = await supabase.auth.signOut();
@@ -52,11 +55,11 @@ export default function init() {
 
   return (
     <main className={styles.main}>
-      GAMEHUNT
+      <h1>GAMEHUNT</h1>
       <div className={styles.description}>hunt the game, find the deal</div>
       {user ? (
         <div className={styles.signin}>
-          <span>Signed in to {user.email}</span>
+          <span>Signed in to {username}</span>
           <button onClick={() => SignOut()}>
             <h2>SIGN_OUT</h2>
           </button>
@@ -64,9 +67,7 @@ export default function init() {
       ) : (
         <div className={styles.signin}>
           <a href="./signin" rel="noopener noreferrer">
-            <h2>
-              SIGN_IN <span>-&gt;</span>
-            </h2>
+            <h2></h2>
           </a>
         </div>
       )}
@@ -74,12 +75,9 @@ export default function init() {
         <a
           href="./profile"
           className={styles.card}
-          target="_blank"
           rel="noopener noreferrer"
         >
-          <h2>
-            SEARCH <span>-&gt;</span>
-          </h2>
+          <h2></h2>
         </a>
 
         {user ? (

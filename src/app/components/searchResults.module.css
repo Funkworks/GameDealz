@@ -1,0 +1,31 @@
+@media only screen and (max-width: 700px) {
+    .main {
+        padding: 0px;
+    }
+
+    .main ul li {
+        list-style-type: none;
+        padding-bottom: 50px;
+        border-bottom: 3px solid black;
+        margin-bottom: 10px;
+    }
+
+    .gameListing {
+        font-size: 20px;
+        padding: 100px;
+    }
+
+    .gameLogo {
+        display: block;
+        width: 400px;
+    }
+
+    .gameTitle {
+        font-size: 30px;
+    }
+
+    .followButton{
+        width: 25px;
+        height: 25px;
+    }
+  }

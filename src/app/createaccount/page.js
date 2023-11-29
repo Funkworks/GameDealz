@@ -29,7 +29,7 @@ export default function Page(){
             .update({ username: username })
             .eq('email', email)
             if(!error){
-                router.push("/")
+                router.push("/init/")
             } else{
                 console.log(error)
             }
