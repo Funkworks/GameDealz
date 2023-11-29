@@ -9,11 +9,15 @@ import SideNav from './components/SideNav';
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <SideNav />
-      <div>{children}</div>
-      {/* You can add a footer or other common elements here */}
-    </div>
+    <html>
+      <body>
+        <div>
+          <SideNav />
+          <div>{children}</div>
+          {/* You can add a footer or other common elements here */}
+        </div>
+      </body>
+    </html>
   );
 };
 
