@@ -3,16 +3,12 @@
         padding: 0px;
     }
 
-    .main ul li {
+    .gameListing {
         list-style-type: none;
         padding-bottom: 50px;
         border-bottom: 3px solid black;
         margin-bottom: 10px;
-    }
-
-    .gameListing {
         font-size: 20px;
-        padding: 100px;
     }
 
     .gameLogo {

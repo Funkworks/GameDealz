@@ -91,29 +91,28 @@ const SearchResults = ({ results, user }) => {
       <hr />
       <ul>
         {filteredResults.map((game, index) => (
-          <li key={index}>
-            <div className={styles.gameListing}>
-              <div className={styles.nameLogo}>
-                <p className={styles.gameTitle}>{game.title}</p>
-                <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
-              </div>
-              <p>
-                Price ${game.salePrice}<br/>
-                Steam Rating {game.steamRatingPercent}%<br/>
-                Metacritic {game.metacriticScore}%<br/>
-              </p>
-              <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
-              {user ? (
-              <>
-                Follow Game <button className={styles.followButton} onClick={() => handleAddGame(game)}>+</button>
-              </>
-              ) : (
-                <></>
-              )}
-              <br />
+          <li className={styles.gameListing} key={index}>
+            <div className={styles.nameLogo}>
+              <p className={styles.gameTitle}>{game.title}</p>
+              <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
             </div>
+            <p>
+              Price ${game.salePrice}<br/>
+              Steam Rating {game.steamRatingPercent}%<br/>
+              Metacritic {game.metacriticScore}%<br/>
+            </p>
+            <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
+            {user ? (
+            <>
+              Follow Game <button className={styles.followButton} onClick={() => handleAddGame(game)}>+</button>
+            </>
+            ) : (
+              <></>
+            )}
+            <br />
           </li>
         ))}
+        <li>That's it~~</li>
       </ul>
     </div>
   );
