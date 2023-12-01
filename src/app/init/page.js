@@ -8,7 +8,7 @@ import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";
 
-export default function init() {
+export default function Page() {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
