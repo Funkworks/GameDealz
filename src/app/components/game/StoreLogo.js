@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import styles from "./StoreLogo.module.css"
-import Image from "next/image";
 
 const REDIRECT_URL = "https://www.cheapshark.com/redirect?dealID="
 const STEAM_URL = "https://store.steampowered.com/app/"
@@ -52,8 +51,8 @@ export default function StoreLogo({ storeID, dealID, steamID }){
     return (
       <div className={styles.main}>
           Sale Store: {store}
-          <a href={REDIRECT_URL + dealID + "&k=1"} target="_blank"><Image src={image} alt="Store Redirect Link"/></a>
-          {store != "Steam" && steamID && <>View on Steam: <a href={STEAM_URL + steamID} target="_blank"><Image src="/logos/0.png" alt="Steam Redirect Link"/></a></>}
+          <a href={REDIRECT_URL + dealID + "&k=1"} target="_blank"><img src={image} alt="Store Redirect Link"/></a>
+          {store != "Steam" && steamID && <>View on Steam: <a href={STEAM_URL + steamID} target="_blank"><img src="/logos/0.png" alt="Steam Redirect Link"/></a></>}
       </div>
     )
 }
