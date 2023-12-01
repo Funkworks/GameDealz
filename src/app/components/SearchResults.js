@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { setAlert } from './../emails.js';
 import styles from "./SearchResults.module.css"
 import StoreLogo from "./game/StoreLogo";
+import Image from "next/image.js";
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
@@ -94,7 +95,7 @@ const SearchResults = ({ results, user }) => {
           <li className={styles.gameListing} key={index}>
             <div className={styles.nameLogo}>
               <p className={styles.gameTitle}>{game.title}</p>
-              <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
+              <Image className={styles.gameLogo} src={game.thumb} alt={game.title} />
             </div>
             <p>
               Price ${game.salePrice}<br/>
@@ -112,7 +113,7 @@ const SearchResults = ({ results, user }) => {
             <br />
           </li>
         ))}
-        <li>That's it~~</li>
+        <li>That&#39;s it~~</li>
       </ul>
     </div>
   );
