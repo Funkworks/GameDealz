@@ -1,7 +1,7 @@
 import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import { setAlert } from './../emails.js';
-import styles from "./SearchResults.module.css";
+import styles from "./SearchResults.module.css"
 import StoreLogo from "./game/StoreLogo";
 
 const SearchResults = ({ results, user }) => {

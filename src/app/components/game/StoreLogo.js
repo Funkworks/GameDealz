@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import styles from "./StoreLogo.module.css";
+import styles from "./StoreLogo.module.css"
 
 const REDIRECT_URL = "https://www.cheapshark.com/redirect?dealID="
 const STEAM_URL = "https://store.steampowered.com/app/"
