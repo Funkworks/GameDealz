@@ -7,27 +7,34 @@ import styles from "./css/GameListing.module.css"
 
 const GameListing = () => {
 
-    const [gameList, setGameList] = useState()
+    const [gameList, setGameList] = useState([])
 
     useEffect(() => {
-        
+        fetchTopGames()
     }, [])
 
 
-    const fetchTopGames = () => {
-        const {data, error} = supabase
-            .from('followed_games_by_user')
+    const fetchTopGames = async () => {
+        const {data, error} = await supabase
+            .from('games')
             .select()
-            .then(() => {
-                console.log(data)
-            })
+            .order('follows', { ascending: false })
+            .limit(10)
+
+        setGameList(data)
     }
 
     return (
         <div className={styles.GameListing}>
             <h2>Most Followed Games</h2>
-            <button onClick={() => fetchTopGames()}>asdasd</button>
-            <Game />
+            <ul>
+                {gameList.map((game, index) => (
+                    <li key={index}>
+                        <Game name={game.game_name} follows={game.follows}/>
+                    </li>
+                    )
+                )}
+            </ul>
         </div>
     )
 }

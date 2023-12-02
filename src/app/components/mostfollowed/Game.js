@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import styles from "./css/Game.module.css"
 
-const Game = ({  }) => {
+const Game = ({ name, follows }) => {
 
     return (
         <div className={styles.GameList}>
-            Test
+            {name}: {follows} followers
         </div>
     )
 }
