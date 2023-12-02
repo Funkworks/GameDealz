@@ -7,6 +7,7 @@ import SearchResults from "../components/SearchResults";
 import supabase from "@/lib/supabase";
 import profile from "../signin";
 import axios from "axios";
+import GameListing from "../components/mostfollowed/GameListing";
 
 export default function Page() {
   const [results, setResults] = useState([]);
@@ -96,8 +97,9 @@ export default function Page() {
         )}
       </div>
       <div className={styles.search}>
+        
+        <GameListing />
         <SearchBar onSearch={GameSearch} />
-
         {loading ? (
           <p>Loading...</p>
         ) : (
