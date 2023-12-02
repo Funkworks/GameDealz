@@ -45,18 +45,18 @@ const SearchResults = ({ results, user }) => {
             } else { // If the game is in the database
               // 1. add a row to followed_games_by_user
               supabase
-              .from("followed_games_by_user")
-              .insert({ user: user.id, game_id: game.gameID })
-              .then((response) => {
-                if(!response.error){ // 2. Increment game follow count
-                  supabase
-                  .from("games")
-                  .update({ follows: data[0].follows + 1})
-                  .eq("id", data[0].id)
-                  .then(resolve)
-                  .catch(reject)
-                }
-              })
+                .from("followed_games_by_user")
+                .insert({ user: user.id, game_id: game.gameID })
+                .then((response) => {
+                  if(!response.error){ // 2. Increment game follow count
+                    supabase
+                      .from("games")
+                      .update({ follows: data[0].follows + 1})
+                      .eq("id", data[0].id)
+                      .then(resolve)
+                      .catch(reject)
+                  }
+                })
             }
           })
           .catch(reject);
