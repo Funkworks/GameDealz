@@ -33,9 +33,7 @@ export default function Page() {
   return (
     <div>
       <main>
-        <div>
-          <a href="../">Home</a>
-        </div>
+        
         <div className={styles.signInBox}>
           <h1>Sign In</h1>
           <div>
