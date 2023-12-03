@@ -57,7 +57,7 @@ export default function Page() {
         //get game id from name (I know this is a dumb solution, but whatever it's fine)
         const { data, error } = await supabase
                 .from('games')
-                .select('id')
+                .select()
                 .eq('game_name', game)
         
         //remove game from player's followed games in database
@@ -66,6 +66,13 @@ export default function Page() {
             .delete()
             .eq('user', user.id)
             .eq('game_id', data[0].id)
+
+        //decrement game follow count from games in database
+        console.log(data[0])
+        const decGameFollow = await supabase
+          .from('games')
+          .update({ follows: data[0].follows - 1})
+          .eq('id', data[0].id)
         
         console.log(JSON.stringify(response));
         

@@ -42,13 +42,21 @@ const SearchResults = ({ results, user }) => {
                     .catch(reject); // Reject the promise if there's an error
                 })
                 .catch(reject);
-            } else {
-              // If the game is in the database, add a row to followed_games_by_user
+            } else { // If the game is in the database
+              // 1. add a row to followed_games_by_user
               supabase
                 .from("followed_games_by_user")
                 .insert({ user: user.id, game_id: game.gameID })
-                .then(resolve)
-                .catch(reject);
+                .then((response) => {
+                  if(!response.error){ // 2. Increment game follow count
+                    supabase
+                      .from("games")
+                      .update({ follows: data[0].follows + 1})
+                      .eq("id", data[0].id)
+                      .then(resolve)
+                      .catch(reject)
+                  }
+                })
             }
           })
           .catch(reject);
