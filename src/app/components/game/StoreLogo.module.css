@@ -8,3 +8,18 @@
     height: 100px;
     object-fit: contain;
 }
+
+.buyNow, .steam{
+    font-size: 28px;
+    margin: 0px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.buyNow {
+    width: 300px;
+}
+
+.steam {
+    width: 230px;
+}

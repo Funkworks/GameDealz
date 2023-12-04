@@ -50,9 +50,19 @@ export default function StoreLogo({ storeID, dealID, steamID }){
 
     return (
       <div className={styles.main}>
-          Sale Store: {store}
-          <a href={REDIRECT_URL + dealID + "&k=1"} target="_blank"><img src={image} alt="Store Redirect Link"/></a>
-          {store != "Steam" && steamID && <>View on Steam: <a href={STEAM_URL + steamID} target="_blank"><img src="/logos/0.png" alt="Steam Redirect Link"/></a></>}
+          <div className={styles.buyNow}>
+            <p>Buy now on {store}</p>
+            <a href={REDIRECT_URL + dealID + "&k=1"} target="_blank">
+              <img src={image} alt="Store Redirect Link"/>
+            </a>
+          </div>
+          {store != "Steam" && steamID && 
+          (<div className={styles.steam}>
+            <p>View on Steam </p>
+            <a href={STEAM_URL + steamID} target="_blank">
+              <img src="/logos/0.png" alt="Steam Redirect Link"/>
+            </a>
+          </div>)}
       </div>
     )
 }

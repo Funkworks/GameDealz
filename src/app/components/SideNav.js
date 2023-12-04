@@ -12,13 +12,13 @@ import logo from "../gamehuntlogo2.svg";
 const SideNav = () => {
   return (
     <div>
-      <Link a href="./init" className={styles.link}>
+      <Link href="./init" className={styles.link}>
         <Image src={logo} width={200} height={200} alt="logo" />
       </Link>
 
       <nav>
         <ul>
-          <Link a href="./signin" rel="noopener noreferrer">
+          <Link href="./signin" rel="noopener noreferrer">
             <h2></h2>
 
             <li>

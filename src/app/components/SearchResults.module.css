@@ -1,8 +1,86 @@
 .gameListing {
     list-style-type: none;
-    padding-bottom: 50px;
-    border-bottom: 3px solid black;
-    margin-bottom: 10px;
+    border-bottom: 3px solid white;
+    display: flex;
+    padding: 10px;
+}
+
+.nameLogo{
+    border-right: 3px solid white;
+    margin-right: 10px;
+    padding: 20px;
+}
+
+.price{
+    display: flex;
+    justify-content: center;
+}
+
+.info{
+    padding: 20px;
+}
+
+.priceFollowGame p {
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.priceFollowGame{
+    display: flex;
+    border: 4px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 540px;
+    padding-left: 20px;
+}
+
+.strikethrough {
+    color: greenyellow;
+    font-weight: bold;
+    padding: 5px;
+    background-color: green;
+}
+
+.normalPrice {
+    color: rgb(46, 46, 46);
+    padding: 5px;
+}
+
+.salePrice {
+    color: greenyellow;
+    font-weight: bold;
+    padding: 5px;
+    background-color: green;
+}
+
+
+.followButton{
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.followGame{
+    display: flex;
+    padding: 5px;
+    width: 300px;
+    height: 75px;
+    border-left: 3px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.ratings{
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.ratings p {
+    font-size: 20px;
+    margin-right: 10px;
 }
 
 .gameLogo {
@@ -21,6 +99,7 @@
         border-bottom: 3px solid black;
         margin-bottom: 10px;
         font-size: 20px;
+        flex-direction: column;
     }
 
     .gameLogo {
@@ -32,8 +111,16 @@
         font-size: 30px;
     }
 
+    .info{
+        border-left: 0;
+        padding: 10px;
+    }
+
     .followButton{
-        width: 25px;
-        height: 25px;
+        width: 200px;
+        height: 50px;
+        font-size: 30px;
+        font-weight: bold;
+        border-radius: 15px;
     }
   }

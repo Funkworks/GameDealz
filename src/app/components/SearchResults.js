@@ -95,8 +95,7 @@ const SearchResults = ({ results, user }) => {
   return (
     <div className={styles.main}>
       <h2>Search Results</h2>
-      <hr />
-      <hr />
+      <hr/>
       <ul>
         {filteredResults.map((game, index) => (
           <li className={styles.gameListing} key={index}>
@@ -104,19 +103,21 @@ const SearchResults = ({ results, user }) => {
               <p className={styles.gameTitle}>{game.title}</p>
               <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
             </div>
-            <p>
-              Price ${game.salePrice}<br/>
-              Steam Rating {game.steamRatingPercent}%<br/>
-              Metacritic {game.metacriticScore}%<br/>
-            </p>
-            <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
-            {user ? (
-            <>
-              Follow Game <button className={styles.followButton} onClick={() => handleAddGame(game)}>+</button>
-            </>
-            ) : (
-              <></>
-            )}
+            <div className={styles.info}>
+              <div className={styles.ratings}>
+                {game.steamRatingPercent != 0 && (<p>Steam Rating {game.steamRatingPercent}%</p>)}
+                {game.metacriticScore != 0 && (<p>Metacritic {game.metacriticScore}%</p>)}
+              </div>
+              <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
+              <div className={styles.priceFollowGame}>
+                <div className={styles.price}>
+                  {game.salePrice != game.normalPrice && (<p className={styles.strikethrough}>-{Math.round((1 - game.salePrice / game.normalPrice) * 100)}%</p>)}
+                  {game.salePrice != game.normalPrice && (<p className={styles.normalPrice}><s>${game.normalPrice}</s></p>)}
+                  <p className={styles.salePrice}>${game.salePrice}</p>
+                </div>
+                {user && (<div className={styles.followGame}><button className={styles.followButton} onClick={() => handleAddGame(game)}>Follow Game </button></div>)}
+              </div>
+            </div>
             <br />
           </li>
         ))}
