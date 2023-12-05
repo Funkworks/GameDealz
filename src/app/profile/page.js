@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 import SideNav from "../components/SideNav";
 import { deleteAlert, getAlert } from './../emails.js';
 import axios from "axios";
-import StoreLogo from "../components/game/StoreLogo";
 
 export default function Page() {
   const [user, setUser] = useState(null);
@@ -100,22 +99,19 @@ export default function Page() {
                 <div className={styles.GameList}>
                     {games ? games.map((game, index) =>
                         <li id={game} key={index}> 
-                          <div className={styles.nameLogo}>
-                            <p className={styles.gameTitle}>{game}</p>
-                            <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
-                          </div>
-                          <div className={styles.info}>
-                          <StoreLogo storeID={game.storeID} dealID={game.dealID} steamID={game.steamAppID}/>
-                          <div className={styles.priceFollowGame}>
-                            <div className={styles.price}>
-                              {game.salePrice != game.normalPrice && (<p className={styles.strikethrough}>-{Math.round((1 - game.salePrice / game.normalPrice) * 100)}%</p>)}
-                              {game.salePrice != game.normalPrice && (<p className={styles.normalPrice}><s>${game.normalPrice}</s></p>)}
-                              <p className={styles.salePrice}>${game.salePrice}</p>
-                              </div>
-                              {user && (<div className={styles.followGame}><button className={styles.followButton} onClick={() => handleRemoveGame(game)}>X   Remove Game </button></div>)}
-                            </div>
-                        </div>
-                        <br />
+                            { game
+                            /* {game.title}
+                            <br></br>
+                            <img src={game.thumb} />
+                            <br></br>
+                            Price ${game.salePrice}
+                            <br></br>
+                            Steam Rating {game.steamRatingPercent}%<br></br>
+                            Metacritic {game.metacriticScore}%<br></br>
+                            {game.cheaperStores}
+                            {user ? <button onClick={() => addGameToUserDatabase(game)}>+</button> : <></>} */}
+                            <br></br>
+                            <button onClick={() => handleRemoveGame(game)}>X</button>
                         </li>
                     ) : <></>}
                 </div>
