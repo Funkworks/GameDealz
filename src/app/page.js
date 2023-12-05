@@ -15,6 +15,7 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("")
+  const [option, setOption] = useState("salePrice")
 
   // This useEffect() runs at the beginning of page render because of the [] at the end
   useEffect(() => {
@@ -47,8 +48,10 @@ export default function Page() {
       const response = await axios.get(
         `https://www.cheapshark.com/api/1.0/deals?title=${query}`
       );
-      setResults(response.data);
-      console.log(response.data)
+      await setResults(response.data);
+      //Result sort option
+      var selectElement = document.getElementById('sort');
+      selectElement.value = '';
     } catch (error) {
       console.error("Failed to fetch data", error);
     }
@@ -79,6 +82,7 @@ export default function Page() {
   };
 
   const SortList = (option) => {
+    setOption(option)
     if(results){
       let tempResults = results.slice()
       tempResults.sort(TypeSort(option))
@@ -111,6 +115,7 @@ export default function Page() {
         <SearchBar onSearch={GameSearch} />
         <div>
           <select name="sort" id="sort" onChange={e => SortList(e.target.value)}>
+            <option value="" disabled selected>Sort Games</option>
             <option value="salePrice">Cheapest</option>
             <option value="savings">Sale</option>
             <option value="title">Alphabetical</option>
