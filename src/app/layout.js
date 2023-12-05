@@ -1,6 +1,6 @@
 import "./globals.css";
-import SideNav from './components/SideNav'; 
-
+import FunkworksFooter from "./components/FunkworksFooter";
+import Header from "./components/Header";
 
 //  export const metadata = {
 //    title: "Game Hunt",
@@ -12,9 +12,9 @@ const Layout = ({ children }) => {
     <html>
       <body>
         <div>
-          <SideNav />
+          <Header />
           {children}
-          {/* You can add a footer or other common elements here */}
+          <FunkworksFooter />
         </div>
       </body>
     </html>

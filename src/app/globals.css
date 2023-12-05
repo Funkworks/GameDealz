@@ -103,7 +103,6 @@ h1 {
   margin: 8px 0 10px 0;
   font-size: 52px;
   font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
   text-shadow: 1px 1px 0px #000000, 2px 2px 0px #000000, 3px 3px 0px #000000,
     4px 4px 0px #000000;
 }
@@ -135,7 +134,7 @@ nav ul li {
 
 
 nav ul li:hover {
-  transform: translateX(-5px);
+  transform: translateX(-2px);
 }
 
 
@@ -167,10 +166,6 @@ nav ul li:hover {
   .center::before {
     transform: none;
     height: 300px;
-  }
-
-  .description {
-    font-size: 0.8rem;
   }
 
   .description a {

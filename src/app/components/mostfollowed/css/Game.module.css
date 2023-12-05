@@ -1,0 +1,15 @@
+.game{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+}
+
+.name{
+    width: 475px;
+    text-align: left;
+}
+
+.followers{
+    width: 100px;
+    text-align: right;
+}

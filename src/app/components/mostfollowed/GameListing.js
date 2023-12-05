@@ -27,12 +27,14 @@ const GameListing = () => {
 
     return (
         <div className={styles.gameListing}>
-            <h2>Most Followed Games</h2>
-            <button className={styles.refreshButton} onClick={()=>fetchTopGames()}><IoIosRefresh className={styles.refreshIcon}/></button>
+            <div className={styles.title}>
+                <h2>Most Followed Games</h2>
+                <button className={styles.refreshButton} onClick={()=>fetchTopGames()}><IoIosRefresh className={styles.refreshIcon}/></button>
+            </div>
             <ul>
                 {gameList.map((game, index) => (
                     <li key={index}>
-                        <Game name={game.game_name} follows={game.follows}/>
+                        <Game name={game.game_name} follows={game.follows} id={game.id}/>
                     </li>
                     )
                 )}

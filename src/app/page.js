@@ -7,6 +7,7 @@ import SearchResults from "./components/SearchResults";
 import supabase from "@/lib/supabase";
 import axios from "axios";
 import GameListing from "./components/mostfollowed/GameListing";
+import SideNav from "./components/SideNav";
 
 export default function Page() {
   const [results, setResults] = useState([]);
@@ -55,13 +56,12 @@ export default function Page() {
 
   return (
     <main className={styles.main}>
-      <h1>GAMEHUNT</h1>
-      <div className={styles.description}>hunt the game, find the deal</div>
+      <SideNav />
       {user ? (
         <div className={styles.signin}>
           <span>Signed in to {username}</span>
           <button onClick={() => SignOut()}>
-            <h2>SIGN_OUT</h2>
+            <h2>Sign Out</h2>
           </button>
         </div>
       ) : (
@@ -73,7 +73,6 @@ export default function Page() {
       )}
 
       <div className={styles.search}>
-        
         <GameListing />
         <SearchBar onSearch={GameSearch} />
         {loading ? (

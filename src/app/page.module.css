@@ -12,7 +12,12 @@
 .signin {
   float: top;
   font-size: x-large;
-  color: violet;
+  font-weight: bold;
+  color: cyan;
+}
+
+.signin button{
+  margin-left: 10px;
 }
 
 .description {
@@ -51,7 +56,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5%;
+  padding: 10px;
 }
 
 .search form input {

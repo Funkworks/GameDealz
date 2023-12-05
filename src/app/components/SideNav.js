@@ -2,12 +2,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ImCool } from "react-icons/im";
-import styles from "../styles/SideNav.module.css";
+import styles from "../styles/SideNav.module.css"
 import "../styles/SideNav.module.css"; // Import the CSS file here
-import logo from "../gamehuntlogo2.svg";
 import supabase from "@/lib/supabase";
 
 const SideNav = () => {
@@ -23,7 +21,6 @@ const SideNav = () => {
     try{
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
-      console.log(user)
     } catch (e) {
       console.log("User not signed in")
       console.log(e)
@@ -31,19 +28,13 @@ const SideNav = () => {
   }
 
   return (
-    <div>
-      <Link href="./" className={styles.link}>
-        <Image src={logo} width={200} height={200} alt="logo" />
-      </Link>
-
+    <div className={styles.signIn}>
       <nav>
         <ul>
           <Link href={user ? "../profile" : "../signin"} rel="noopener noreferrer">
-            <h2></h2>
-
             <li>
-              <div className={"profile-icon"} >
-                <ImCool/>
+              <div className={styles.signIn} >
+                <ImCool style={{height: 75, width: 75}}/>
               </div>
             </li>
           </Link>

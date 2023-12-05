@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { setAlert } from './../emails.js';
 import styles from "./SearchResults.module.css"
 import StoreLogo from "./game/StoreLogo";
+import { Snackbar } from "@mui/material";
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Clear the array of unique game names when the results change
@@ -73,6 +75,7 @@ const SearchResults = ({ results, user }) => {
       .then(() => {
         // Any additional logic after adding the game
         setAlert(game.gameID, user.email)
+        setOpen(true)
       })
       .catch((error) => {
         // Handle the error
@@ -90,6 +93,10 @@ const SearchResults = ({ results, user }) => {
 
   if (!filteredResults.length) {
     return <p>No results found</p>;
+  }
+
+  const closeSnackbar = () => {
+    setOpen(false)
   }
 
   return (
@@ -122,6 +129,13 @@ const SearchResults = ({ results, user }) => {
         ))}
         <li>That&#39;s it~~</li>
       </ul>
+      <Snackbar
+        open={open}
+        onClose={closeSnackbar}
+        autoHideDuration={2000}
+        message="Game followed"
+        anchorOrigin={{ vertical:'bottom', horizontal:'right' }}
+      />
     </div>
   );
 };
