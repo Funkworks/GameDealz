@@ -48,11 +48,45 @@ export default function Page() {
         `https://www.cheapshark.com/api/1.0/deals?title=${query}`
       );
       setResults(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error("Failed to fetch data", error);
     }
     setLoading(false);
   };
+
+  const TypeSort = (property) => (a, b) => {
+    const valueA = a[property];
+    const valueB = b[property];
+  
+    if(property !== "title" && property !== "salePrice"){
+      if (valueA < valueB) {
+        return 1;
+      } else if (valueA > valueB) {
+        return -1;
+      } else {
+        return 0;
+      }
+    } else {
+      if (valueA < valueB) {
+        return -1;
+      } else if (valueA > valueB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  };
+
+  const SortList = (option) => {
+    if(results){
+      let tempResults = results.slice()
+      tempResults.sort(TypeSort(option))
+      setResults(tempResults)
+    } else{
+      return
+    }
+  }
 
   return (
     <main className={styles.main}>
@@ -75,6 +109,15 @@ export default function Page() {
       <div className={styles.search}>
         <GameListing />
         <SearchBar onSearch={GameSearch} />
+        <div>
+          <select name="sort" id="sort" onChange={e => SortList(e.target.value)}>
+            <option value="salePrice">Cheapest</option>
+            <option value="savings">Sale</option>
+            <option value="title">Alphabetical</option>
+            <option value="steamRatingPercent">Steam Rating</option>
+            <option value="metacriticScore">Metacritic Rating</option>
+          </select>
+        </div>
         {loading ? (
           <p>Loading...</p>
         ) : (
