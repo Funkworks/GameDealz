@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import styles from "../components/mostfollowed/css/GameListing.module.css"
 import supabase from "@/lib/supabase";
 import React, { useState, useEffect } from "react";
 import SideNav from "../components/SideNav";
@@ -116,14 +116,11 @@ export default function Page() {
         <main>
             <div>
                 <h1>Followed Games: </h1>
-                <div className={styles.GameList}>
+                <div className={styles.gameListing}>
                     {games ? games.map((game, index) =>
-                        <li id={game} key={index}> 
-                            {game}
-                            <br></br>index:{console.log(gamesData[index])}
-                            <br></br>
-                            <button onClick={() => handleRemoveGame(game)}>X</button>
-                        </li>
+                        <div id={game} key={index}> 
+                            <h2>{game} <button onClick={() => handleRemoveGame(game)}>Remove</button></h2>
+                        </div>
                     ) : <></>}
                 </div>
             </div>
