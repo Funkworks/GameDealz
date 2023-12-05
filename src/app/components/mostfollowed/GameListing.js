@@ -25,8 +25,9 @@ const GameListing = () => {
     }
 
     return (
-        <div className={styles.GameListing}>
+        <div className={styles.gameListing}>
             <h2>Most Followed Games</h2>
+            <button onClick={()=>fetchTopGames()}>Refresh</button>
             <ul>
                 {gameList.map((game, index) => (
                     <li key={index}>

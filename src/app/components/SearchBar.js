@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState } from "react";
+import styles from "./SearchBar.module.css"
 
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -12,7 +13,8 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className={styles.main}>
+      <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
@@ -21,6 +23,7 @@ const SearchBar = ({ onSearch }) => {
       />
       <button type="submit">Search</button>
     </form>
+    </div>
   );
 };
 

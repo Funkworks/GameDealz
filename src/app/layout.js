@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
       <body>
         <div>
           <SideNav />
-          <div>{children}</div>
+          {children}
           {/* You can add a footer or other common elements here */}
         </div>
       </body>

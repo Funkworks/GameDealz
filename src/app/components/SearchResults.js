@@ -95,12 +95,11 @@ const SearchResults = ({ results, user }) => {
   return (
     <div className={styles.main}>
       <h2>Search Results</h2>
-      <hr/>
       <ul>
         {filteredResults.map((game, index) => (
           <li className={styles.gameListing} key={index}>
             <div className={styles.nameLogo}>
-              <p className={styles.gameTitle}>{game.title}</p>
+              <div className={styles.gameTitleDiv}><p className={styles.gameTitle}>{game.title}</p></div>
               <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
             </div>
             <div className={styles.info}>
