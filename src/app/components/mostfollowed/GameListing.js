@@ -4,6 +4,7 @@ import supabase from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import Game from "./Game";
 import styles from "./css/GameListing.module.css"
+import { IoIosRefresh } from "react-icons/io";
 
 const GameListing = () => {
 
@@ -25,12 +26,15 @@ const GameListing = () => {
     }
 
     return (
-        <div className={styles.GameListing}>
-            <h2>Most Followed Games</h2>
+        <div className={styles.gameListing}>
+            <div className={styles.title}>
+                <h2>Most Followed Games</h2>
+                <button className={styles.refreshButton} onClick={()=>fetchTopGames()}><IoIosRefresh className={styles.refreshIcon}/></button>
+            </div>
             <ul>
                 {gameList.map((game, index) => (
                     <li key={index}>
-                        <Game name={game.game_name} follows={game.follows}/>
+                        <Game name={game.game_name} follows={game.follows} id={game.id}/>
                     </li>
                     )
                 )}

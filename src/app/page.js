@@ -1,13 +1,129 @@
 "use client";
-// pages/_app.js
-// pages/_app.js
-import React from "react";
-import Layout from "./layout"; // Update the path if necessary
 import "./globals.css";
+import styles from "./page.module.css";
+import React, { useState, useEffect } from "react";
+import SearchBar from "./components/SearchBar";
+import SearchResults from "./components/SearchResults";
+import supabase from "@/lib/supabase";
+import axios from "axios";
+import GameListing from "./components/mostfollowed/GameListing";
+import SideNav from "./components/SideNav";
 
-function Home({ pageProps }) {
-  return <h1>WELCOME TO GAMEHUNT</h1>;<app {...pageProps} />;
+export default function Page() {
+  const [results, setResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("")
+
+  // This useEffect() runs at the beginning of page render because of the [] at the end
+  useEffect(() => {
+    UserLoggedIn();
+  }, []);
+
+  const UserLoggedIn = async () => {
+    try{
+      const { data: { user } } = await supabase.auth.getUser()
+      const { data, error } = await supabase
+        .from('users')
+        .select(`username`)
+        .eq('email', user.email)
+      setUsername(data[0].username)
+      setUser(user)
+    } catch (e) {
+      console.log("User not signed in")
+    }
+  }
+
+  const SignOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    window.location.reload();
+  };
+
+  const GameSearch = async (query) => {
+    setSearchQuery(query);
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://www.cheapshark.com/api/1.0/deals?title=${query}`
+      );
+      setResults(response.data);
+      console.log(response.data)
+    } catch (error) {
+      console.error("Failed to fetch data", error);
+    }
+    setLoading(false);
+  };
+
+  const TypeSort = (property) => (a, b) => {
+    const valueA = a[property];
+    const valueB = b[property];
   
-}
+    if(property !== "title" && property !== "salePrice"){
+      if (valueA < valueB) {
+        return 1;
+      } else if (valueA > valueB) {
+        return -1;
+      } else {
+        return 0;
+      }
+    } else {
+      if (valueA < valueB) {
+        return -1;
+      } else if (valueA > valueB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  };
 
-export default Home;
+  const SortList = (option) => {
+    if(results){
+      let tempResults = results.slice()
+      tempResults.sort(TypeSort(option))
+      setResults(tempResults)
+    } else{
+      return
+    }
+  }
+
+  return (
+    <main className={styles.main}>
+      <SideNav />
+      {user ? (
+        <div className={styles.signin}>
+          <span>Signed in to {username}</span>
+          <button onClick={() => SignOut()}>
+            <h2>Sign Out</h2>
+          </button>
+        </div>
+      ) : (
+        <div className={styles.signin}>
+          <a href="./signin" rel="noopener noreferrer">
+            <h2></h2>
+          </a>
+        </div>
+      )}
+
+      <div className={styles.search}>
+        <GameListing />
+        <SearchBar onSearch={GameSearch} />
+        <div>
+          <select name="sort" id="sort" onChange={e => SortList(e.target.value)}>
+            <option value="salePrice">Cheapest</option>
+            <option value="savings">Sale</option>
+            <option value="title">Alphabetical</option>
+            <option value="steamRatingPercent">Steam Rating</option>
+            <option value="metacriticScore">Metacritic Rating</option>
+          </select>
+        </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <SearchResults results={results} user={user} />
+        )}
+      </div>
+    </main>
+  );
+}

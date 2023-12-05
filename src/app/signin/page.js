@@ -22,6 +22,7 @@ export default function Page() {
     if (!error) {
       console.log(`Sign-in successful`);
       router.push("/");
+      router.refresh();
     } else {
       setErrorMsg("Username or password incorrect/not found!");
       setTimeout(() => {

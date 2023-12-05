@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { setAlert } from './../emails.js';
 import styles from "./SearchResults.module.css"
 import StoreLogo from "./game/StoreLogo";
+import { Snackbar } from "@mui/material";
 
 const SearchResults = ({ results, user }) => {
   const [uniqueGameNames, setUniqueGameNames] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // Clear the array of unique game names when the results change
@@ -73,6 +75,7 @@ const SearchResults = ({ results, user }) => {
       .then(() => {
         // Any additional logic after adding the game
         setAlert(game.gameID, user.email)
+        setOpen(true)
       })
       .catch((error) => {
         // Handle the error
@@ -92,15 +95,18 @@ const SearchResults = ({ results, user }) => {
     return <p>No results found</p>;
   }
 
+  const closeSnackbar = () => {
+    setOpen(false)
+  }
+
   return (
     <div className={styles.main}>
       <h2>Search Results</h2>
-      <hr/>
       <ul>
         {filteredResults.map((game, index) => (
           <li className={styles.gameListing} key={index}>
             <div className={styles.nameLogo}>
-              <p className={styles.gameTitle}>{game.title}</p>
+              <div className={styles.gameTitleDiv}><p className={styles.gameTitle}>{game.title}</p></div>
               <img className={styles.gameLogo} src={game.thumb} alt={game.title} />
             </div>
             <div className={styles.info}>
@@ -123,6 +129,13 @@ const SearchResults = ({ results, user }) => {
         ))}
         <li>That&#39;s it~~</li>
       </ul>
+      <Snackbar
+        open={open}
+        onClose={closeSnackbar}
+        autoHideDuration={2000}
+        message="Game followed"
+        anchorOrigin={{ vertical:'bottom', horizontal:'right' }}
+      />
     </div>
   );
 };

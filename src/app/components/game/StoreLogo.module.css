@@ -23,3 +23,29 @@
 .steam {
     width: 230px;
 }
+
+@media only screen and (max-width: 700px) {
+    .main {
+        width: 100%;
+    }
+
+    .main img{
+        width: 75px;
+        height: 75px;
+    }
+
+    .buyNow, .steam{
+        font-size: 20px;
+        margin: 0 0 0 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .buyNow{
+        width: 50%;
+    }
+
+    .steam{
+        width: 50%;
+    }
+}
