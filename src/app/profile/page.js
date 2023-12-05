@@ -10,6 +10,7 @@ import axios from "axios";
 export default function Page() {
   const [user, setUser] = useState(null);
   const [games, setGames] = useState(null);
+  var gamesData = [];
 
   useEffect(() => {
     checkIfSignedIn();
@@ -31,6 +32,20 @@ export default function Page() {
     }
   };
 
+  const getGameData = async (gameName) => {
+    //get game id from name (I know this is a dumb solution, but whatever it's fine)
+    const { data, error } = await supabase
+            .from('games')
+            .select()
+            .eq('game_name', gameName)
+
+    //get steamID from cheapshark
+    const gameData = await axios.get(`https://www.cheapshark.com/api/1.0/games?id=${data[0].id}`);
+    console.log(`https://www.cheapshark.com/api/1.0/games?id=${data[0].id}`);
+
+    return gameData;
+  }
+
   const fetchFollowedGames = async () => {
     try {
       const { data, error } = await supabase
@@ -47,6 +62,12 @@ export default function Page() {
             //TODO: Fetch game info from Cheapshark
             console.log("Data: " + data);
             setGames(data.map((game) => game.games.game_name));
+
+            data.forEach(game => {
+              console.log("game: " + game.games.game_name);
+              gamesData.push(getGameData(game.games.game_name));
+            });
+            console.log("gamesData: " + gamesData);
         } catch (e){
 
         }
@@ -90,7 +111,6 @@ export default function Page() {
         //remove list item
         document.getElementById(game).remove();
     }
-    
 
     return(
         <main>
@@ -99,17 +119,8 @@ export default function Page() {
                 <div className={styles.GameList}>
                     {games ? games.map((game, index) =>
                         <li id={game} key={index}> 
-                            { game
-                            /* {game.title}
-                            <br></br>
-                            <img src={game.thumb} />
-                            <br></br>
-                            Price ${game.salePrice}
-                            <br></br>
-                            Steam Rating {game.steamRatingPercent}%<br></br>
-                            Metacritic {game.metacriticScore}%<br></br>
-                            {game.cheaperStores}
-                            {user ? <button onClick={() => addGameToUserDatabase(game)}>+</button> : <></>} */}
+                            {game}
+                            <br></br>index:{console.log(gamesData[index])}
                             <br></br>
                             <button onClick={() => handleRemoveGame(game)}>X</button>
                         </li>
