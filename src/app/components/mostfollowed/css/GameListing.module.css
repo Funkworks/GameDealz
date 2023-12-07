@@ -32,3 +32,9 @@
     align-items: center;
     border-bottom: 2px solid white;
 }
+
+
+.main{
+    display: flex;
+    justify-content: center;
+}

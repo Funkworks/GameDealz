@@ -34,7 +34,7 @@ export default function Page(){
                 console.log(error)
             }
         } else {
-            setErrorMsg("Email taken/password not strong enough, idk")
+            setErrorMsg("Email taken/password not strong enough")
             setTimeout(() => {setErrorMsg("")}, 3000)
             console.log(error)
         }
@@ -42,10 +42,9 @@ export default function Page(){
 
     return(
         <main>
-            <div><a href='../'>Home</a></div>
             <div className={styles.signInBox}>
                 <h1>Create account</h1>
-                <div>
+                <div className={styles.inputs}>
                     <form onSubmit={createAccount}>
                         <div>
                             <input
@@ -77,8 +76,11 @@ export default function Page(){
                                 onChange={(e) => setConfirmPass(e.target.value)}
                             />
                         </div>
-                        <p>{errorMsg}</p>
-                        <button type="submit">Create</button>
+                        <div className={styles.error}><p>{errorMsg}</p></div>
+                        <div className={styles.buttons}>
+                            <button type="submit">Create account</button>
+                        </div>
+                        
                     </form>
                 </div>
             </div>

@@ -12,8 +12,11 @@
 .signin {
   float: top;
   font-size: x-large;
-  font-weight: bold;
   color: cyan;
+}
+
+.signin span{
+  font-weight: bold;
 }
 
 .signin button{

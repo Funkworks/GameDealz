@@ -34,6 +34,7 @@ const SideNav = () => {
           <Link href={user ? "../profile" : "../signin"} rel="noopener noreferrer">
             <li>
               <div className={styles.signIn} >
+                {user ? <p>Profile</p> : <p>Sign in</p>}
                 <ImCool style={{height: 75, width: 75}}/>
               </div>
             </li>

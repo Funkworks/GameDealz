@@ -132,8 +132,8 @@ const SearchResults = ({ results, user }) => {
       <Snackbar
         open={open}
         onClose={closeSnackbar}
-        autoHideDuration={2000}
-        message="Game followed"
+        autoHideDuration={4000}
+        message="Game followed! See profile to remove alert"
         anchorOrigin={{ vertical:'bottom', horizontal:'right' }}
       />
     </div>

@@ -97,7 +97,7 @@ export default function Page() {
       <SideNav />
       {user ? (
         <div className={styles.signin}>
-          <span>Signed in to {username}</span>
+          Signed in to <span>{username}</span>
           <button onClick={() => SignOut()}>
             <h2>Sign Out</h2>
           </button>
@@ -105,7 +105,7 @@ export default function Page() {
       ) : (
         <div className={styles.signin}>
           <a href="./signin" rel="noopener noreferrer">
-            <h2></h2>
+            Sign in to get alerted when games go on sale!
           </a>
         </div>
       )}
@@ -114,8 +114,8 @@ export default function Page() {
         <GameListing />
         <SearchBar onSearch={GameSearch} />
         <div>
-          <select name="sort" id="sort" onChange={e => SortList(e.target.value)}>
-            <option value="" disabled selected>Sort Games</option>
+          <select name="sort" id="sort" defaultValue="" onChange={e => SortList(e.target.value)}>
+            <option value="" disabled>Sort Games</option>
             <option value="salePrice">Cheapest</option>
             <option value="savings">Sale</option>
             <option value="title">Alphabetical</option>

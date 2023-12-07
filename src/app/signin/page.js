@@ -34,7 +34,6 @@ export default function Page() {
   return (
     <div>
       <main>
-        
         <div className={styles.signInBox}>
           <h1>Sign In</h1>
           <div>
@@ -51,16 +50,16 @@ export default function Page() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <p>{errorMsg}</p>
-              <button type="submit">Sign In</button>
+              <div className={styles.error}><p>{errorMsg}</p></div>
+              <div className={styles.buttons}>
+                <button className={styles.signIn} type="submit">Sign In</button>
+                <button className={styles.createAccount}>
+                  <a href="../createaccount" rel="noopener noreferrer">
+                    Create an account
+                  </a>
+                </button>
+              </div>
             </form>
-            <div>
-              <button>
-                <a href="../createaccount" rel="noopener noreferrer">
-                  Create an account
-                </a>
-              </button>
-            </div>
           </div>
         </div>
       </main>

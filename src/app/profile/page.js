@@ -113,9 +113,9 @@ export default function Page() {
     }
 
     return(
-        <main>
+        <main className={styles.main}>
             <div>
-                <h1>Followed Games: </h1>
+                <h1>Followed Games</h1>
                 <div className={styles.gameListing}>
                     {games ? games.map((game, index) =>
                         <div id={game} key={index}> 
